@@ -1,77 +1,118 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Woodjamesley Roblox Hub</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #000000, #1a1a1a);
-      color: white;
-      text-align: center;
-    }
+<title>Woodjamesley Gaming Hub</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    header {
-      padding: 30px;
-      font-size: 28px;
-      background: black;
-      color: red;
-      text-shadow: 0 0 10px red;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: black;
+  color: white;
+  overflow-x: hidden;
+}
 
-    .card {
-      background: #222;
-      margin: 30px auto;
-      padding: 20px;
-      width: 90%;
-      max-width: 400px;
-      border-radius: 15px;
-      box-shadow: 0 0 15px red;
-    }
+/* Loading Screen */
+#loader {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  z-index: 999;
+  animation: fadeOut 2s forwards;
+  animation-delay: 2s;
+}
 
-    button {
-      padding: 12px 20px;
-      font-size: 16px;
-      background: red;
-      border: none;
-      color: white;
-      border-radius: 8px;
-      cursor: pointer;
-    }
+@keyframes fadeOut {
+  to { opacity: 0; visibility: hidden; }
+}
 
-    button:active {
-      background: darkred;
-    }
+/* Navbar */
+nav {
+  background: #111;
+  padding: 15px;
+  text-align: center;
+}
 
-    footer {
-      margin-top: 40px;
-      padding: 15px;
-      font-size: 14px;
-      background: black;
-    }
-  </style>
+nav a {
+  color: red;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: white;
+}
+
+/* Header */
+header {
+  text-align: center;
+  padding: 40px;
+  font-size: 28px;
+  text-shadow: 0 0 10px red;
+}
+
+/* Cards */
+.card {
+  background: #1a1a1a;
+  margin: 20px auto;
+  padding: 20px;
+  width: 90%;
+  max-width: 400px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px red;
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+button {
+  padding: 10px 20px;
+  background: red;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #111;
+  margin-top: 40px;
+}
+</style>
 </head>
 
 <body>
 
-<header>🔥 Woodjamesley Roblox Hub 🔥</header>
+<div id="loader">Loading Gaming Hub...</div>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="games.html">Games</a>
+</nav>
+
+<header>🔥 Woodjamesley Gaming Hub 🔥</header>
 
 <div class="card">
-  <h2>About Me</h2>
-  <p>I play Roblox and build cool things online.</p>
-  <button onclick="alert('Welcome to my website!')">
-    Launch
+  <h2>Welcome</h2>
+  <p>This is my custom gaming website built from scratch.</p>
+  <button onclick="alert('You entered the Gaming Hub!')">
+    Enter
   </button>
 </div>
 
-<div class="card">
-  <h2>Favorite Game Platform</h2>
-  <p>I enjoy exploring games on Roblox and learning how they’re made.</p>
-</div>
-
 <footer>
-  Created by Woodjamesley_201 | Future Developer 💻
+  Built by Woodjamesley_201 💻
 </footer>
 
 </body>
