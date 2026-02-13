@@ -1,142 +1,123 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Woodjamesley Ultimate Hub</title>
+<title>Woodjamesley Secure System</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  color: white;
-  text-align: center;
   background: black;
-  overflow-x: hidden;
+  color: lime;
+  font-family: monospace;
+  text-align: center;
+  overflow: hidden;
 }
 
-/* Animated background */
-body::before {
-  content: "";
+/* Matrix canvas */
+canvas {
   position: fixed;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, red 1px, transparent 1px);
-  background-size: 40px 40px;
-  animation: move 20s linear infinite;
-  opacity: 0.15;
+  top: 0;
+  left: 0;
   z-index: -1;
 }
 
-@keyframes move {
-  from { transform: translate(0,0); }
-  to { transform: translate(-200px,-200px); }
-}
-
-/* Navbar */
-nav {
-  background: #111;
-  padding: 15px;
-}
-
-nav a {
-  color: red;
-  margin: 0 15px;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-nav a:hover {
-  color: white;
-}
-
-/* Header glow */
-header {
-  padding: 40px;
-  font-size: 28px;
-  text-shadow: 0 0 15px red;
-}
-
-/* Cards */
-.card {
-  background: #111;
-  margin: 20px auto;
-  padding: 20px;
-  width: 90%;
-  max-width: 400px;
+/* Login box */
+.login-box {
+  margin-top: 150px;
+  background: rgba(0,0,0,0.8);
+  padding: 30px;
   border-radius: 15px;
-  box-shadow: 0 0 20px red;
+  box-shadow: 0 0 20px lime;
+  display: inline-block;
+}
+
+input {
+  padding: 10px;
+  margin: 10px;
+  width: 200px;
+  border: none;
+  border-radius: 5px;
 }
 
 button {
   padding: 10px 20px;
-  background: red;
+  background: lime;
   border: none;
-  color: white;
-  border-radius: 8px;
   cursor: pointer;
-  margin-top: 10px;
-}
-
-button:hover {
-  background: darkred;
-}
-
-.status-online {
-  color: lime;
   font-weight: bold;
 }
 
-footer {
-  margin-top: 40px;
-  padding: 20px;
-  background: #111;
+h1 {
+  animation: glitch 1s infinite;
+}
+
+@keyframes glitch {
+  0% { text-shadow: 2px 2px red; }
+  50% { text-shadow: -2px -2px blue; }
+  100% { text-shadow: 2px 2px red; }
 }
 </style>
 </head>
 
 <body>
 
-<nav>
-  <a href="index.html">Home</a>
-  <a href="games.html">Games</a>
-</nav>
+<canvas id="matrix"></canvas>
 
-<header>⚡ Woodjamesley Ultimate Gaming Hub ⚡</header>
+<h1>SECURE ACCESS TERMINAL</h1>
 
-<div class="card">
-  <h2>Server Status</h2>
-  <p>Status: <span class="status-online">ONLINE</span></p>
-  <p>Players Active: 1,284</p>
+<div class="login-box">
+  <p>Enter Access Code</p>
+  <input type="password" id="password" placeholder="Access Code">
+  <br>
+  <button onclick="checkLogin()">LOGIN</button>
 </div>
-
-<div class="card">
-  <h2>Enter Hub</h2>
-  <button onclick="alert('Access Granted 🔓')">
-    Access System
-  </button>
-</div>
-
-<div class="card">
-  <h2>Music Control</h2>
-  <button onclick="toggleMusic()">Toggle Music</button>
-</div>
-
-<audio id="bgMusic" loop>
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-</audio>
-
-<footer>
-  Engineered by Woodjamesley_201 🚀
-</footer>
 
 <script>
-var music = document.getElementById("bgMusic");
+/* Matrix Effect */
+var canvas = document.getElementById("matrix");
+var ctx = canvas.getContext("2d");
 
-function toggleMusic() {
-  if (music.paused) {
-    music.play();
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+
+var letters = "01";
+letters = letters.split("");
+
+var fontSize = 14;
+var columns = canvas.width / fontSize;
+
+var drops = [];
+for (var x = 0; x < columns; x++)
+  drops[x] = 1;
+
+function draw() {
+  ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  ctx.fillStyle = "#0F0";
+  ctx.font = fontSize + "px monospace";
+
+  for (var i = 0; i < drops.length; i++) {
+    var text = letters[Math.floor(Math.random() * letters.length)];
+    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975)
+      drops[i] = 0;
+
+    drops[i]++;
+  }
+}
+
+setInterval(draw, 33);
+
+/* Fake Login */
+function checkLogin() {
+  var pass = document.getElementById("password").value;
+  if(pass === "wood123") {
+    window.location.href = "admin.html";
   } else {
-    music.pause();
+    alert("ACCESS DENIED");
   }
 }
 </script>
